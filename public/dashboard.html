@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FITNESS TRACKER DASHBOARD | Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <strong class="brand">FITNESS TRACKER</strong>
+    <div class="topbar-right">
+      <span>Signed in as <b id="user-name"></b></span>
+      <button id="logout" class="ghost">Log out</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="summary" aria-label="This week">
+      <div><span class="big" id="sum-steps">0</span><span class="cap">Total steps this week</span></div>
+      <div><span class="big" id="sum-cal">0</span><span class="cap">Average calories burned</span></div>
+      <div><span class="big" id="sum-water">0 L</span><span class="cap">Water this week</span></div>
+      <div><span class="big" id="sum-goal">No goals yet</span><span class="cap">Average goal completion</span></div>
+    </section>
+
+    <div class="layout">
+      <aside class="side">
+        <section class="panel">
+          <h2 id="form-title">Log your activity</h2>
+          <form id="log-form">
+            <label>Date <input id="log-date" type="date" required></label>
+            <div class="row">
+              <label>Steps <input id="log-steps" type="number" min="0" step="1" placeholder="8000"></label>
+              <label>Calories burned <input id="log-cal" type="number" min="0" step="1" placeholder="2200"></label>
+            </div>
+            <div class="row">
+              <label>Water (litres) <input id="log-water" type="number" min="0" step="0.1" placeholder="2.5"></label>
+              <label>Workout (minutes) <input id="log-workout" type="number" min="0" step="1" placeholder="45"></label>
+            </div>
+            <label>Notes <textarea id="log-notes" rows="2" placeholder="Morning run, felt good"></textarea></label>
+            <div class="row buttons">
+              <button id="log-submit" class="primary" type="submit">Save entry</button>
+              <button id="log-cancel" class="ghost" type="button" hidden>Cancel</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel">
+          <h2>Goals</h2>
+          <form id="goal-form">
+            <div class="row">
+              <label>Track
+                <select id="goal-type">
+                  <option value="steps">Steps</option>
+                  <option value="calories">Calories burned</option>
+                  <option value="water">Water (L)</option>
+                </select>
+              </label>
+              <label>Target <input id="goal-target" type="number" min="1" step="any" required></label>
+            </div>
+            <div class="row">
+              <label>Start <input id="goal-start" type="date" required></label>
+              <label>End <input id="goal-end" type="date" required></label>
+            </div>
+            <button class="primary" type="submit">Save goal</button>
+          </form>
+          <ul id="goal-list" class="goals"></ul>
+        </section>
+      </aside>
+
+      <section class="main">
+        <div class="range">
+          <label>From <input id="range-from" type="date"></label>
+          <label>To <input id="range-to" type="date"></label>
+          <button id="range-apply" class="ghost">Show range</button>
+        </div>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Daily trend</h2>
+            <div class="controls">
+              <select id="trend-metric" aria-label="Metric">
+                <option value="steps">Steps</option>
+                <option value="calories">Calories burned</option>
+                <option value="water">Water</option>
+                <option value="workout">Workout minutes</option>
+              </select>
+              <select id="trend-type" aria-label="Chart type">
+                <option value="line">Line</option>
+                <option value="bar">Bar</option>
+              </select>
+            </div>
+          </div>
+          <div class="chart"><canvas id="trend-chart"></canvas></div>
+        </section>
+
+        <section class="panel">
+          <h2>Calories and workout time</h2>
+          <div class="chart"><canvas id="mix-chart"></canvas></div>
+        </section>
+
+        <section class="panel">
+          <h2>Your entries</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Date</th><th>Steps</th><th>Calories</th><th>Water (L)</th><th>Workout (min)</th><th>Notes</th><th><span class="sr">Actions</span></th></tr></thead>
+              <tbody id="log-rows"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

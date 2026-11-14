@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FITNESS TRACKER DASHBOARD | Log in</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+  <main class="auth">
+    <section class="auth-intro">
+      <h1>FITNESS TRACKER</h1>
+      <p>Log your steps, calories, water and workouts. See the week at a glance.</p>
+      <ul class="metrics-hint">
+        <li style="--c:#0F766E">Steps</li>
+        <li style="--c:#F97316">Calories</li>
+        <li style="--c:#4F46E5">Water</li>
+        <li style="--c:#0B3D3A">Workouts</li>
+      </ul>
+    </section>
+
+    <section class="auth-panel">
+      <div class="tabs" role="tablist">
+        <button id="tab-login" role="tab" aria-selected="true">Log in</button>
+        <button id="tab-register" role="tab" aria-selected="false">Create account</button>
+      </div>
+
+      <form id="form-login">
+        <label>Email <input id="login-email" type="email" required autocomplete="email"></label>
+        <label>Password <input id="login-password" type="password" required autocomplete="current-password"></label>
+        <button class="primary" type="submit">Log in</button>
+      </form>
+
+      <form id="form-register" hidden>
+        <label>Name <input id="reg-name" type="text" required autocomplete="name"></label>
+        <label>Email <input id="reg-email" type="email" required autocomplete="email"></label>
+        <label>Password <input id="reg-password" type="password" required minlength="6" autocomplete="new-password"></label>
+        <div class="row">
+          <label>Age <input id="reg-age" type="number" min="5" max="120"></label>
+          <label>Gender
+            <select id="reg-gender">
+              <option value="">Prefer not to say</option>
+              <option>Female</option><option>Male</option><option>Other</option>
+            </select>
+          </label>
+        </div>
+        <button class="primary" type="submit">Create account</button>
+      </form>
+      <p id="auth-error" class="form-error" role="alert"></p>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/mock.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
